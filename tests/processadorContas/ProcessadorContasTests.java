@@ -14,7 +14,7 @@ public class ProcessadorContasTests {
     Pagamento pagamento1;
 
     @Before
-    public void setup(){
+    public void setup() throws illegalArgumentsException {
         pc = new ProcessadorContas();
 
         conta1 = new Conta(1, "2024-05-02",500.00);
@@ -63,6 +63,22 @@ public class ProcessadorContasTests {
         String msg = "PENDENTE";
         assertEquals(msg, processamento);
         assertEquals(440,pagamentoBoleto.getValorASomar(),1);
+    }
+
+    @Test
+    public void test4() {
+        Fatura faturaBoleto = new Fatura("2024-05-20",6500.00,"Cliente 1");
+
+        Conta contaBoleto = new Conta(4, "2024-05-02",5500.00); //é pra quebrar por ser acima de 5000
+        Conta[] contasBoleto = new Conta[1];
+        contasBoleto[0] = contaBoleto;
+
+        Pagamento pagamentoBoleto = new Pagamento(5500.00,"2024-05-02","2024-05-02","BOLETO");
+        try{
+            faturaBoleto.addPagamento(pagamentoBoleto);
+        }catch(illegalArgumentsException e){
+            System.out.println("Boleto não aceito, pois possui valor acima do permitido.");
+        }
     }
 
 }
