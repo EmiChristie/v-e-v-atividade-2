@@ -9,11 +9,16 @@ public class IngressoRepositoryTest {
     static ShowRepository showRepository;
     static Show show;
 
+
     @BeforeClass
     public static void setup() {
         ingressoRepository = new IngressoRepository();
         showRepository = new ShowRepository();
-        show = new Show();
+        String data = "02/02/2020";
+        Boolean dataEspecial = false;
+        Double despesas = 2000.00;
+        double cache = 1000.00;
+        show = new Show(data, dataEspecial, despesas, cache);
         showRepository.addShow(show);
     }
 

@@ -12,9 +12,13 @@ public class IngressoTest {
 
     @BeforeClass
     public static void setup() {
+        String data = "02/02/2020";
+        Boolean dataEspecial = false;
+        Double despesas = 2000.00;
+        double cache = 1000.00;
         ingressoRepository = new IngressoRepository();
         showRepository = new ShowRepository();
-        show = new Show();
+        show = new Show(data, dataEspecial, despesas, cache);
         showRepository.addShow(show);
     }
 
