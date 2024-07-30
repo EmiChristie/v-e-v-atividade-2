@@ -24,5 +24,10 @@ public class ProcessadorContasTests {
 
         Date dataFatura1 = new Date(124,02,20);
         fatura1 = new Fatura(dataFatura1,1500.00,"Cliente 1");
+
+        Conta[] contas = new Conta[1];
+        contas[0] = conta1;
+
+        pc.processar(contas,fatura1);
     }
 }
