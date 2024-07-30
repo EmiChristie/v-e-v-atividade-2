@@ -67,18 +67,55 @@ public class ProcessadorContasTests {
 
     @Test
     public void test4() {
-        Fatura faturaBoleto = new Fatura("2024-05-20",6500.00,"Cliente 1");
+        Fatura faturaBoleto2 = new Fatura("2024-05-20",6500.00,"Cliente 1");
 
-        Conta contaBoleto = new Conta(4, "2024-05-02",5500.00); //é pra quebrar por ser acima de 5000
-        Conta[] contasBoleto = new Conta[1];
-        contasBoleto[0] = contaBoleto;
+        Conta contaBoleto2 = new Conta(4, "2024-05-02",5500.00); //é pra quebrar por ser acima de 5000
+        Conta[] contasBoleto2 = new Conta[1];
+        contasBoleto2[0] = contaBoleto2;
 
-        Pagamento pagamentoBoleto = new Pagamento(5500.00,"2024-05-02","2024-05-02","BOLETO");
+        Pagamento pagamentoBoleto2 = new Pagamento(5500.00,"2024-05-02","2024-05-02","BOLETO");
         try{
-            faturaBoleto.addPagamento(pagamentoBoleto);
+            faturaBoleto2.addPagamento(pagamentoBoleto2);
+            String processamento = pc.processar(contasBoleto2,faturaBoleto2);
+            String msg = "PENDENTE";
+            assertEquals(msg, processamento);
         }catch(illegalArgumentsException e){
             System.out.println("Boleto não aceito, pois possui valor acima do permitido.");
         }
+    }
+
+    @Test
+    public void test5() {
+        Fatura faturaBoleto3 = new Fatura("2024-05-20",6500.00,"Cliente 1");
+
+        Conta contaBoleto3 = new Conta(4, "2024-05-02",0);
+        Conta[] contasBoleto3 = new Conta[1];
+        contasBoleto3[0] = contaBoleto3;
+
+        Pagamento pagamentoBoleto3 = new Pagamento(0,"2024-05-02","2024-05-02","BOLETO");
+        try{
+            faturaBoleto3.addPagamento(pagamentoBoleto3);
+            String processamento = pc.processar(contasBoleto3,faturaBoleto3);
+            String msg = "PENDENTE";
+            assertEquals(msg, processamento);
+        }catch(illegalArgumentsException e){
+            System.out.println("Boleto não aceito, pois possui valor abaixo do permitido.");
+        }
+    }
+
+    @Test
+    public void test6() throws illegalArgumentsException {
+        Fatura faturaCartao = new Fatura("2024-05-20",6500.00,"Cliente 1");
+
+        Conta contaCartao = new Conta(5, "2024-05-02",6600);
+        Conta[] contasCartao = new Conta[1];
+        contasCartao[0] = contaCartao;
+
+        Pagamento pagamentoCartao = new Pagamento(6600,"2024-05-02","2024-05-02","CARTAO_CREDITO");
+        faturaCartao.addPagamento(pagamentoCartao);
+        String processamento = pc.processar(contasCartao,faturaCartao);
+        String msg = "PAGA";
+        assertEquals(msg, processamento);
     }
 
 }

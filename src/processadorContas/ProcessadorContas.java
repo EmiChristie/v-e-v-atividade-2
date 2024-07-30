@@ -10,7 +10,7 @@ public class ProcessadorContas {
 
     public String processar(Conta[] contas, Fatura fatura) throws illegalArgumentsException {
         String status = "PENDENTE";
-        verificarDataCartao(contas, fatura.getPagamentos());
+        verificarDataCartao(contas, fatura.getPagamentos(), fatura.getData());
         verificarDataBoletos(contas, fatura.getPagamentos());
         if(somarValores(fatura.getPagamentos(),fatura.getData()) >= fatura.getValor()){
             status = "PAGA";
@@ -37,6 +37,7 @@ public class ProcessadorContas {
         for(Pagamento i:pags){
             if(dataDentroDoLimite(i.getData(),data)){
                 soma+=i.getValorASomar();
+                System.out.println(i.getValorASomar());
             }
         }
         return soma;
@@ -50,12 +51,12 @@ public class ProcessadorContas {
     }
 
 
-    void verificarDataCartao(Conta[] contas, List<Pagamento> pags){
+    void verificarDataCartao(Conta[] contas, List<Pagamento> pags, String dataFatura){
+        String dataFatura15DiasAtras = get15DiasAtras(dataFatura);
         for(int i = 0; i < contas.length;i++){
             Pagamento p = pags.get(i);
-            String dataConta15DiasAtras = get15DiasAtras(contas[i].getData());
-            if(Objects.equals(p.getTipo(), "CARTAO_CREDITO")){
-                if(LocalDate.parse(p.getData()).isAfter(LocalDate.parse(dataConta15DiasAtras))){
+            if(p.getTipo().equals("CARTAO_CREDITO")){
+                if(LocalDate.parse(contas[i].getData()).isAfter(LocalDate.parse(dataFatura15DiasAtras))){
                     p.setValorASomar(0);
                 }
             }
