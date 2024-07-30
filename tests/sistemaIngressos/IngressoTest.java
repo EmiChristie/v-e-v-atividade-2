@@ -6,14 +6,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 public class IngressoTest {
 
-    IngressoRepository ingressoRepository;
-    ShowRepository showRepository;
+    static IngressoRepository ingressoRepository;
+    static ShowRepository showRepository;
+    static Show show;
 
     @BeforeClass
     public static void setup() {
         ingressoRepository = new IngressoRepository();
         showRepository = new ShowRepository();
-        Show show = new Show();
+        show = new Show();
         showRepository.addShow(show);
     }
 
@@ -24,7 +25,8 @@ public class IngressoTest {
         int showId;
 
         showId = showRepository.getLastId();
-        preco = showRepository.getShow(showId).getPreco();
+
+        preco = show.getPreco();
         Ingresso ingresso = new Ingresso(tipo, preco, showId);
         ingressoRepository.addIngresso();
 
@@ -41,8 +43,8 @@ public class IngressoTest {
         double preco;
         int showId;
 
-        showId = showRepository.getLastId();
-        preco = showRepository.getShow(showId).getPreco() * 2;
+        showId = show.getId();
+        preco = show.getPreco() * 2;
         Ingresso ingresso = new Ingresso(tipo, preco, showId);
         ingressoRepository.addIngresso();
 
@@ -59,8 +61,8 @@ public class IngressoTest {
         double preco;
         int showId;
 
-        showId = showRepository.getLastId();
-        preco = showRepository.getShow(showId).getPreco() / 2;
+        showId = show.getId();
+        preco = show.getPreco() / 2;
         Ingresso ingresso = new Ingresso(tipo, preco, showId);
         ingressoRepository.addIngresso();
 
@@ -76,14 +78,14 @@ public class IngressoTest {
         String tipo = "MEIA_ENTRADA";
         double preco;
         int showId = showRepository.getLastId();
-        int ingressosVendidos = showRepository.getShow(showId).getIngressosVendidos()[1].leght;
+        int ingressosVendidos = show.getIngressosVendidos();
 
         preco = showRepository.getShow(showId).getPreco() / 2;
         Ingresso ingresso = new Ingresso(tipo, preco, showId);
         ingresso.comprarIngresso();
 
-        Assert.assertEquals(ingressosVendidos+1, showRepository.getShow(showId).getIngressosVendidos()[1].leght);
-        Assert.assertEquals(igresso.getStatus(), "vendido");
+        Assert.assertEquals(ingressosVendidos+1, show.getIngressosVendidos());
+        Assert.assertEquals(ingresso.getStatus(), "vendido");
     }
 
     @Test
@@ -91,14 +93,14 @@ public class IngressoTest {
         String tipo = "MEIA_ENTRADA";
         double preco;
         int showId = showRepository.getLastId();
-        int ingressosVendidos = showRepository.getShow(showId).getIngressosVendidos()[1].leght;
+        int ingressosVendidos = show.getIngressosVendidos();
 
         preco = showRepository.getShow(showId).getPreco() / 2;
         Ingresso ingresso = new Ingresso(tipo, preco, showId);
         ingresso.comprarIngresso();
         ingresso.cancelarCompra();
 
-        Assert.assertEquals(ingressosVendidos, showRepository.getShow(showId).getIngressosVendidos()[1].leght);
-        Assert.assertEquals(igresso.getStatus(), "nao vendido");
+        Assert.assertEquals(ingressosVendidos, show.getIngressosVendidos());
+        Assert.assertEquals(ingresso.getStatus(), "nao vendido");
     }
 }
