@@ -15,6 +15,8 @@ public class ProcessadorContas {
         if(somarValores(fatura.getPagamentos(),fatura.getData()) >= fatura.getValor()){
             status = "PAGA";
         }
+        System.out.println("Valor da fatura: "+fatura.getValor());
+        System.out.println("Status da fatura: "+status);
         return status;
     }
 
@@ -35,19 +37,19 @@ public class ProcessadorContas {
     double somarValores(List<Pagamento> pags, String data) {
         double soma = 0;
         for(Pagamento i:pags){
-            if(dataDentroDoLimite(i.getData(),data)){
+            if(dataDentroDoLimite(i.getData(),data) || data.equals(i.getData())){
                 soma+=i.getValorASomar();
-                System.out.println(i.getValorASomar());
+                System.out.println(i.getValorASomar()); //para fins de debugging
             }
         }
+        System.out.println("\n\nSoma total: "+soma); //para fins de debugging
         return soma;
     }
 
     private boolean dataDentroDoLimite(String data, String dataFatura) {
         LocalDate data1 = LocalDate.parse(data);
         LocalDate data2 = LocalDate.parse(dataFatura);
-        LocalDate data3 = data2.plusDays(1);
-        return data1.isBefore(data3);
+        return data1.isBefore(data2);
     }
 
 
