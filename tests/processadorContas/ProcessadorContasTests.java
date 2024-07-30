@@ -19,7 +19,7 @@ public class ProcessadorContasTests {
 
         conta1 = new Conta(1, "2024-05-02",500.00);
 
-        fatura1 = new Fatura("2024-05-20",1500.00,"Cliente 1");
+        fatura1 = new Fatura("2024-05-02",1500.00,"Cliente 1");
 
         pagamento1 = new Pagamento(500,"2024-05-02","2024-05-02","BOLETO");
 

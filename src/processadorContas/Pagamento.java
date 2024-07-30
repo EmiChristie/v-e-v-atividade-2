@@ -10,28 +10,30 @@ public class Pagamento {
     String data;
     String dataConta;
     String tipo;
+    double valorASomar;
 
     public Pagamento(double valor, String data, String dataConta,String tipo) {
         this.valor = valor;
         this.data = data;
         this.dataConta = dataConta;
         this.tipo = tipo;
+        this.valorASomar = valor;
     }
 
     public String getTipo(){return tipo;}
 
     public double getValor() {
-        if(dataAtrasada()){
-            return valor*1.1;
-        }
         return valor;
+    }
+
+    public double getValorASomar(){
+        return valorASomar;
+    }
+
+    public void setValorASomar(double novoValor){
+        this.valorASomar = novoValor;
     }
 
     public String getData(){return data;}
 
-    public boolean dataAtrasada(){
-        LocalDate data1 = LocalDate.parse(data);
-        LocalDate data2 = LocalDate.parse(dataConta);
-        return data1.isAfter(data2);
-    }
 }
