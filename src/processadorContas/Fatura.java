@@ -6,18 +6,18 @@ import java.util.List;
 
 public class Fatura {
 
-    Date data;
+    String data;
     double valor;
     String nomeCliente;
     List<Pagamento> pagamentos = new ArrayList<Pagamento>();
 
-    public Fatura(Date data, double valor, String nomeCliente){
+    public Fatura(String data, double valor, String nomeCliente){
         this.data = data; this.valor = valor; this.nomeCliente = nomeCliente;
     }
 
     public double getValor(){return valor;}
 
-    public Date getData(){return data;}
+    public String getData(){return data;}
 
     public List<Pagamento> getPagamentos() {
         return pagamentos;
