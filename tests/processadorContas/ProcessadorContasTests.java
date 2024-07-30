@@ -49,4 +49,20 @@ public class ProcessadorContasTests {
         assertEquals(msg, processamento);
     }
 
+    @Test
+    public void test3() throws illegalArgumentsException {
+        Fatura faturaBoleto = new Fatura("2024-05-20",1500.00,"Cliente 1");
+
+        Conta contaBoleto = new Conta(4, "2024-05-02",400.00);
+        Pagamento pagamentoBoleto = new Pagamento(400,"2024-05-03","2024-05-02","BOLETO");
+        faturaBoleto.addPagamento(pagamentoBoleto);
+        Conta[] contasBoleto = new Conta[1];
+        contasBoleto[0] = contaBoleto;
+
+        String processamento = pc.processar(contasBoleto,faturaBoleto);
+        String msg = "PENDENTE";
+        assertEquals(msg, processamento);
+        assertEquals(440,pagamentoBoleto.getValorASomar(),1);
+    }
+
 }

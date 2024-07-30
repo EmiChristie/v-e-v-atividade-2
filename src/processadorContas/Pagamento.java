@@ -1,9 +1,5 @@
 package processadorContas;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Pagamento {
 
     double valor;

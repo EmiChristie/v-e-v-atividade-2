@@ -2,7 +2,6 @@ package processadorContas;
 
 import processadorContas.exceptions.illegalArgumentsException;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.time.LocalDate;

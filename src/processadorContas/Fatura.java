@@ -1,7 +1,6 @@
 package processadorContas;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Fatura {
@@ -9,7 +8,7 @@ public class Fatura {
     String data;
     double valor;
     String nomeCliente;
-    List<Pagamento> pagamentos = new ArrayList<Pagamento>();
+    List<Pagamento> pagamentos = new ArrayList<>();
 
     public Fatura(String data, double valor, String nomeCliente){
         this.data = data; this.valor = valor; this.nomeCliente = nomeCliente;
