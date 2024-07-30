@@ -28,7 +28,7 @@ public class IngressoTest {
 
         preco = show.getPreco();
         Ingresso ingresso = new Ingresso(tipo, preco, showId);
-        ingressoRepository.addIngresso();
+        ingressoRepository.addIngresso(ingresso);
 
         Assert.assertEquals(ingressoRepository.getLastId(), ingresso.getId());
         Assert.assertEquals(tipo, ingresso.getType());
@@ -46,7 +46,7 @@ public class IngressoTest {
         showId = show.getId();
         preco = show.getPreco() * 2;
         Ingresso ingresso = new Ingresso(tipo, preco, showId);
-        ingressoRepository.addIngresso();
+        ingressoRepository.addIngresso(ingresso);
 
         Assert.assertEquals(ingressoRepository.getLastId(), ingresso.getId());
         Assert.assertEquals(tipo, ingresso.getType());
@@ -64,7 +64,7 @@ public class IngressoTest {
         showId = show.getId();
         preco = show.getPreco() / 2;
         Ingresso ingresso = new Ingresso(tipo, preco, showId);
-        ingressoRepository.addIngresso();
+        ingressoRepository.addIngresso(ingresso);
 
         Assert.assertEquals(ingressoRepository.getLastId(), ingresso.getId());
         Assert.assertEquals(tipo, ingresso.getType());

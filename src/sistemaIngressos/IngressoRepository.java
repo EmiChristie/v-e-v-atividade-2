@@ -1,10 +1,12 @@
 package sistemaIngressos;
 
 public class IngressoRepository {
-    public void addIngresso() {
+    int lastId = 0;
+    public void addIngresso(Ingresso ingresso) {
+        lastId++;
     }
 
     public int getLastId() {
-        return 0;
+        return lastId;
     }
 }
