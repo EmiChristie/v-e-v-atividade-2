@@ -287,4 +287,64 @@ public class ProcessadorContasTests {
         assertEquals(msg, processamento);
     }
 
+    @Test
+    @DisplayName("Teste de pagamento por boleto com valor negativo.")
+    public void test12() {
+        Fatura faturaBoletoNegativo = new Fatura("2024-05-20",0.01,"Cliente 1");
+
+        Conta contaBoletoNegativo = new Conta(4, "2024-05-02",0);
+        Conta[] contasBoletoNegativo = new Conta[1];
+        contasBoletoNegativo[0] = contaBoletoNegativo;
+
+        Pagamento pagamentoBoletoNegativo = new Pagamento(0,"2024-05-02","2024-05-02","BOLETO");
+        try{
+            faturaBoletoNegativo.addPagamento(pagamentoBoletoNegativo);
+            String processamento = pc.processar(contasBoletoNegativo,faturaBoletoNegativo);
+            String msg = "PENDENTE";
+            assertEquals(msg, processamento);
+        }catch(illegalArgumentsException e){
+            System.out.println("Boleto não aceito, pois possui valor abaixo do permitido.");
+        }
+    }
+
+    @Test
+    @DisplayName("Teste de pagamento por cartão de crédito com valor negativo.")
+    public void test13() {
+        Fatura faturaCartaoNegativo = new Fatura("2024-05-20",0.01,"Cliente 1");
+
+        Conta contaCartaoNegativo = new Conta(4, "2024-05-02",-100);
+        Conta[] contasCartaoNegativo = new Conta[1];
+        contasCartaoNegativo[0] = contaCartaoNegativo;
+
+        Pagamento pagamentoBoletoNegativo = new Pagamento(-100,"2024-05-02","2024-05-02","CARTAO_CREDITO");
+        try{
+            faturaCartaoNegativo.addPagamento(pagamentoBoletoNegativo);
+            String processamento = pc.processar(contasCartaoNegativo,faturaCartaoNegativo);
+            String msg = "PENDENTE";
+            assertEquals(msg, processamento);
+        }catch(illegalArgumentsException e){
+            System.out.println("Pagamento negativo não é aceito.");
+        }
+    }
+
+    @Test
+    @DisplayName("Teste de pagamento por transferência bancária com valor negativo.")
+    public void test14() {
+        Fatura faturaCartaoNegativo = new Fatura("2024-05-20",0.01,"Cliente 1");
+
+        Conta contaCartaoNegativo = new Conta(4, "2024-05-02",-1);
+        Conta[] contasCartaoNegativo = new Conta[1];
+        contasCartaoNegativo[0] = contaCartaoNegativo;
+
+        Pagamento pagamentoBoletoNegativo = new Pagamento(-1,"2024-05-02","2024-05-02","TRANSFERENCIA_BANCARIA");
+        try{
+            faturaCartaoNegativo.addPagamento(pagamentoBoletoNegativo);
+            String processamento = pc.processar(contasCartaoNegativo,faturaCartaoNegativo);
+            String msg = "PENDENTE";
+            assertEquals(msg, processamento);
+        }catch(illegalArgumentsException e){
+            System.out.println("Pagamento negativo não é aceito.");
+        }
+    }
+
 }

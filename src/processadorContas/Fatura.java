@@ -30,6 +30,9 @@ public class Fatura {
                 throw new illegalArgumentsException();
             }
         }
+        if(p.getValor() <= 0){
+            throw new illegalArgumentsException();
+        }
         pagamentos.add(p);
     }
 }
