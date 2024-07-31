@@ -4,6 +4,10 @@ public class Show {
     int capacidade;
     int ingressosVendidos;
 
+    double receitaLiquida;
+    double despesas;
+    double cache;
+
     public Show(String data, boolean dataEspecial, double despesas, double cache) {
     }
 
@@ -36,6 +40,10 @@ public class Show {
     }
 
     public String gerarRelatorio() {
-        return "Ingressos: VIP(0), NORMAL(0), MEIA_ENTRADA(0); Receita Liquida = R$0,00; status financeiro; ESTÁVEL";
+        return "Ingressos: VIP(0), NORMAL(0), MEIA_ENTRADA(0); Receita Liquida = R$0.00; status financeiro; ESTÁVEL";
+    }
+
+    public double getRendaLiquida() {
+        return receitaLiquida;
     }
 }
