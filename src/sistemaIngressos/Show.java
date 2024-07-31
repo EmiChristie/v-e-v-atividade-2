@@ -4,7 +4,7 @@ public class Show {
     int capacidade;
     int ingressosVendidos;
 
-    public Show(String data, Boolean dataEspecial, Double despesas, double cache) {
+    public Show(String data, boolean dataEspecial, double despesas, double cache) {
     }
 
     public double getPreco() {
@@ -23,11 +23,11 @@ public class Show {
         return "02/02/2020";
     }
 
-    public Boolean getDataEspecial() {
+    public boolean getDataEspecial() {
         return false;
     }
 
-    public Double getDespesas() {
+    public double getDespesas() {
         return 2000.00;
     }
 
