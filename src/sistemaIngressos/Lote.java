@@ -29,4 +29,8 @@ public class Lote {
 
     public void cancelarCompra(int id) {
     }
+
+    public int getId() {
+        return loteId;
+    }
 }
