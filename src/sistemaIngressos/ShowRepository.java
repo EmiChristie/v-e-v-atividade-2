@@ -23,7 +23,7 @@ public class ShowRepository {
         boolean dataEspecial = false;
         double despesas = 2000.00;
         double cache = 1000.00;
-        Show show = new Show(data, dataEspecial, despesas, cache);
+        Show show = new Show(capacidade, data, dataEspecial,  despesas, cache);
         return show;
         */
         return shows.get(showId);

@@ -14,6 +14,7 @@ public class Lote {
     }
 
     public void addIngresso(Ingresso ingresso) {
+        ingressos.add(ingresso);
     }
 
     public ArrayList<Ingresso> getIngressos() {
@@ -25,9 +26,13 @@ public class Lote {
     }
 
     public void comprarIngresso(int id) {
+        Ingresso ingresso = ingressos.get(id);
+        ingresso.comprarIngresso(desconto);
     }
 
     public void cancelarCompra(int id) {
+        Ingresso ingresso = ingressos.get(id);
+        ingresso.cancelarCompra(desconto);
     }
 
     public int getId() {

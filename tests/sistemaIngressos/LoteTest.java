@@ -21,9 +21,9 @@ public class LoteTest {
     @BeforeClass
     public static void setup() {
         showRepository = new ShowRepository();
-        show = new Show("02/02/2020", false,2000.00, 1000.00);
+        show = new Show(100, "23/08/2023", false, 1000, 1500, showRepository.getLastId(), 50);
         showRepository.addShow(show);
-        Ingresso ingresso = new Ingresso("NORMAL",show.getPreco(), showRepository.getLastId());
+        Ingresso ingresso = new Ingresso("NORMAL",show.getPreco(), showRepository.getLastId(), ingressoRepository.getLastId(), show);
         ingressoRepository.addIngresso(ingresso);
         ArrayList<Ingresso> ingressos = new ArrayList<>();
         ingressoRepository = new IngressoRepository();
@@ -32,18 +32,16 @@ public class LoteTest {
         loteId = loteRepository.getLastId();
         lote = new Lote(loteId, ingressos, desconto);
         loteRepository.addLote(lote);
-
     }
 
     @Test
     public void adicionarIngresso() {
         lote.addIngresso(ingresso);
         ArrayList<Ingresso> ingressos = lote.getIngressos();
-        Ingresso ultimoIngresso = ingressos.get(ingressos.size()-1);
         Assert.assertEquals(ingressoRepository.getLastId(), ingresso.getId());
         Assert.assertEquals("NORMAL", ingresso.getType());
         Assert.assertEquals("nao vendido", ingresso.getStatus());
-        Assert.assertEquals(show.getPreco(), ingresso.getPreco());
+        Assert.assertEquals(show.getPreco(), ingresso.getPreco(), 0.2);
         Assert.assertEquals(showRepository.getLastId(), ingresso.getShowId());
     }
 
@@ -52,7 +50,7 @@ public class LoteTest {
         double showRendaAnterior = show.getRendaLiquida();
         lote.comprarIngresso(ingresso.getId());
         double desconto = lote.getDesconto();
-        Assert.assertEquals(showRendaAnterior, show.getRendaLiquida() - ingresso.getPreco() * desconto);
+        Assert.assertEquals(showRendaAnterior, show.getRendaLiquida() - ingresso.getPreco() * desconto, 0.2);
     }
 
     @Test
@@ -60,6 +58,6 @@ public class LoteTest {
         double showRendaAnterior = show.getRendaLiquida();
         lote.comprarIngresso(ingresso.getId());
         lote.cancelarCompra(ingresso.getId());
-        Assert.assertEquals(showRendaAnterior, show.getRendaLiquida());
+        Assert.assertEquals(showRendaAnterior, show.getRendaLiquida(), 0.2);
     }
 }

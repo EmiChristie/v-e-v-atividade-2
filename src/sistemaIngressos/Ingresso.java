@@ -1,32 +1,65 @@
 package sistemaIngressos;
 
 public class Ingresso {
-    public Ingresso(String tipo, double preco, int showId) {
+
+    int id;
+
+    Show show;
+
+    String tipo;
+
+    double preco;
+
+    int showId;
+
+    String status;
+
+    public Ingresso(String tipo, double preco, int showId, int id, Show show) {
+        this.tipo = tipo;
+        this.preco = preco;
+        this.showId = showId;
+        this.id = id;
+        this.show = show;
+        this.status = "nao vendido";
     }
 
     public int getId() {
-        return 0;
+        return id;
     }
 
     public String getType() {
-        return "";
+        return tipo;
     }
 
     public String getStatus() {
-        return "";
+        return status;
     }
 
     public double getPreco() {
-        return 0;
+        return preco;
     }
 
     public int getShowId() {
-        return 0;
+        return showId;
     }
 
-    public void comprarIngresso() {
+    public void comprarIngresso(double desconto) {
+        if(tipo.equals("NORMAL") || tipo.equals("VIP")) {
+            show.mudarReceita(preco * desconto);
+        } else {
+            show.mudarReceita(preco);
+        }
+        show.adicionarIngresso(tipo);
+        status = "vendido";
     }
 
-    public void cancelarCompra() {
+    public void cancelarCompra(double desconto) {
+        if(tipo.equals("NORMAL") || tipo.equals("VIP")) {
+            show.mudarReceita(preco * desconto * -1);
+        } else {
+            show.mudarReceita(preco * -1);
+        }
+        show.removerIngresso(tipo);
+        status = "nao vendido";
     }
 }
