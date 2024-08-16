@@ -168,7 +168,7 @@ public class ProcessadorContasPE {
         fatura = new Fatura("2024-06-23",3000,"Cliente 1");
 
         conta = new Conta(1, "2024-06-24",3000);
-        pagamento = new Pagamento(3000,"2024-06-23","2024-06-24","TRANSFERENCIA_BANCARIA");
+        pagamento = new Pagamento(3000,"2024-06-24","2024-06-24","TRANSFERENCIA_BANCARIA");
         fatura.addPagamento(pagamento);
         Conta[] contas = new Conta[1];
         contas[0] = conta;
