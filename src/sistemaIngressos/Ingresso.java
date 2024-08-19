@@ -1,5 +1,7 @@
 package sistemaIngressos;
 
+import java.util.ArrayList;
+
 public class Ingresso {
 
     int id;
@@ -49,6 +51,8 @@ public class Ingresso {
         } else {
             show.mudarReceita(preco);
         }
+        ArrayList<String> tipo = new ArrayList<>();
+        tipo.add(this.tipo);
         show.adicionarIngresso(tipo);
         status = "vendido";
     }

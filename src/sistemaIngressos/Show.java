@@ -1,5 +1,7 @@
 package sistemaIngressos;
 
+import java.util.ArrayList;
+
 public class Show {
     int id;
     int capacidade;
@@ -44,13 +46,18 @@ public class Show {
         }
     }
 
-    public void adicionarIngresso(String tipo) {
-        if(tipo.equals("NORMAL")) {
-            ingressosNormais++;
-        } else if (tipo.equals("VIP")) {
-            ingressosVip++;
-        } else {
-            ingressosMeia++;
+    public void adicionarIngresso(ArrayList<String> ingressos) {
+        int numNormal = 0;
+        int numVIP = 0;
+        int numMeia = 0;
+        for(int i = 0; i < ingressos.size(); i++) {
+            if (ingressos.get(i).equals("NORMAL")) {
+                numNormal++;
+            } else if (ingressos.get(i).equals("VIP")) {
+                numVIP++;
+            } else {
+                numMeia++;
+            }
         }
     }
 
@@ -95,5 +102,17 @@ public class Show {
 
     public double getCache() {
         return cache;
+    }
+
+    public int getIngressosNormais() {
+        return  ingressosNormais;
+    }
+
+    public int getIngressosMeia() {
+        return  ingressosMeia;
+    }
+
+    public int getIngressosVip() {
+        return ingressosVip;
     }
 }
