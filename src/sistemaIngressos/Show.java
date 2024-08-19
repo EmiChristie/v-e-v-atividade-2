@@ -97,7 +97,11 @@ public class Show {
     }
 
     public double getDespesas() {
-        return despesas;
+        if(dataEspecial) {
+            return despesas * 1.15;
+        } else {
+            return  despesas;
+        }
     }
 
     public double getCache() {

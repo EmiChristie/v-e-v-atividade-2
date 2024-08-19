@@ -58,4 +58,16 @@ public class decisionTableTests {
         lote.comprarIngresso(2);
         Assert.assertEquals("LUCRO", show.getStatus());
     }
+
+    @Test
+    public void testeGastoDataEspecial() {
+        show = new Show(100, "23/08/2023", true, 100, 500, showRepository.getLastId(), 500);
+        Assert.assertEquals(115, show.getDespesas(), 1);
+    }
+
+    @Test
+    public void testeGastoDataNormal() {
+        show = new Show(100, "23/08/2023", false, 100, 500, showRepository.getLastId(), 500);
+        Assert.assertEquals(100, show.getDespesas(), 1);
+    }
 }

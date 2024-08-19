@@ -7,7 +7,7 @@ import sistemaIngressos.*;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertThrows;
 
 public class partitionTests {
     static IngressoRepository ingressoRepository;
