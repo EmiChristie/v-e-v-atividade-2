@@ -115,4 +115,8 @@ public class Show {
     public int getIngressosVip() {
         return ingressosVip;
     }
+
+    public String getStatus() {
+        return status;
+    }
 }
