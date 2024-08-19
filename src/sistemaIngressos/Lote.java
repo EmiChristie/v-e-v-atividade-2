@@ -6,7 +6,7 @@ public class Lote {
     int loteId;
 
     double desconto;
-    ArrayList<Ingresso> ingressos = new ArrayList<>();
+    ArrayList<Ingresso> ingressos;
     public Lote(int loteId, ArrayList<Ingresso> ingressos, double desconto) {
         this.ingressos = ingressos;
         this.loteId = loteId;
