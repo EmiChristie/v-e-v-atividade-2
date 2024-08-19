@@ -59,6 +59,9 @@ public class Show {
                 numMeia++;
             }
         }
+        ingressosNormais += numNormal;
+        ingressosVip += numVIP;
+        ingressosMeia += numMeia;
     }
 
     public void removerIngresso(String tipo) {

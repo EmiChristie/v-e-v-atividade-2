@@ -111,4 +111,83 @@ public class avlTests {
             show.adicionarIngresso(ingressos);
         });
     }
+
+    @Test
+    public void testeQuantiaMenorQueMinimoIngressoNormal() {
+        ArrayList<String> ingressos = new ArrayList<>();
+        for(int i = 0; i < 69; i++) {
+            ingressos.add("NORMAL");
+        }
+        Exception exception = assertThrows(NumberFormatException.class, () -> {
+            show.adicionarIngresso(ingressos);
+        });
+    }
+
+    @Test
+    public void testeQuantiaMinimaIngressoNormal() {
+        show = new Show(100, "23/08/2023", false, 1000, 1500, showRepository.getLastId(), 50);
+        ArrayList<String> ingressos = new ArrayList<>();
+        for(int i = 0; i < 70; i++) {
+            ingressos.add("NORMAL");
+        }
+
+        show.adicionarIngresso(ingressos);
+        Assert.assertEquals(70, show.getIngressosVip());
+    }
+
+    @Test
+    public void testeQuantia1MaiorQueMininoIngressoNormal() {
+        show = new Show(100, "23/08/2023", false, 1000, 1500, showRepository.getLastId(), 50);
+        ArrayList<String> ingressos = new ArrayList<>();
+        for(int i = 0; i < 71; i++) {
+            ingressos.add("NORMAL");
+        }
+        show.adicionarIngresso(ingressos);
+        Assert.assertEquals(71, show.getIngressosVip());
+    }
+
+    @Test
+    public void testeQuantiaQualquerIngressoNormal() {
+        show = new Show(100, "23/08/2023", false, 1000, 1500, showRepository.getLastId(), 50);
+        ArrayList<String> ingressos = new ArrayList<>();
+        for(int i = 0; i < 74; i++) {
+            ingressos.add("NORMAL");
+        }
+        show.adicionarIngresso(ingressos);
+        Assert.assertEquals(74, show.getIngressosVip());
+    }
+
+    @Test
+    public void testeQuantia1MenorQueMaximoIngressoNormal() {
+        show = new Show(100, "23/08/2023", false, 1000, 1500, showRepository.getLastId(), 50);
+        ArrayList<String> ingressos = new ArrayList<>();
+        for(int i = 0; i < 79; i++) {
+            ingressos.add("NORMAL");
+        }
+        show.adicionarIngresso(ingressos);
+        Assert.assertEquals(79, show.getIngressosVip());
+    }
+
+    @Test
+    public void testeQuantiaMaximaIngressoNormal() {
+        show = new Show(100, "23/08/2023", false, 1000, 1500, showRepository.getLastId(), 50);
+        ArrayList<String> ingressos = new ArrayList<>();
+        for(int i = 0; i < 80; i++) {
+            ingressos.add("NORMAL");
+        }
+        show.adicionarIngresso(ingressos);
+        Assert.assertEquals(80, show.getIngressosVip());
+    }
+
+    @Test
+    public void testeQuantiaMaiorQueMaximoIngressoNormal() {
+        show = new Show(100, "23/08/2023", false, 1000, 1500, showRepository.getLastId(), 50);
+        ArrayList<String> ingressos = new ArrayList<>();
+        for(int i = 0; i < 81; i++) {
+            ingressos.add("NORMAL");
+        }
+        Exception exception = assertThrows(NumberFormatException.class, () -> {
+            show.adicionarIngresso(ingressos);
+        });
+    }
 }
